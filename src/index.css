@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-brand-50 text-text-main font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif text-brand-900;
+  }
+}
+
+/* GHL NUCLEAR RESET & OVERRIDES */
+@layer utilities {
+
+  /* 
+       Estrategia "App Shell": 
+       Esto saca la aplicación del flujo normal de GHL y la pone 
+       encima de todo como una capa de pantalla completa.
+       Es la única forma de garantizar 0 márgenes en todos los temas de GHL.
+    */
+  .ghl-app-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 2147483647 !important;
+    /* Max Z-Index permitido */
+    background-color: #F7F7F7;
+    /* Brand-50 */
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Enforce White Text on Dark Backgrounds */
+  .force-text-white {
+    color: #ffffff !important;
+  }
+
+  .force-text-white * {
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.2);
+    /* Default border fix */
+  }
+
+  /* Exclude specific accents from being forced to white */
+  .force-text-white .text-brand-500,
+  .force-text-white .text-brand-500 * {
+    color: #B08412 !important;
+  }
+}
